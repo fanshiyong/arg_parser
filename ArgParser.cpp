@@ -11,14 +11,21 @@ int _tmain(int argc, char* argv[])
 	int c=0;
 	bool d=false;
 	if(args.parse(argc, argv)){
-		for(arg_parser::iterator it = args.begin(); it!=args.end(); it++){
-			printf("%c\t%s\n", it->first, it->second.c_str());
+		printf("arguments:\n");
+		for(int i=0; i<args.arguments.size(); i++){
+			printf("\t%s\n", args.arguments[i].c_str());
 		}
 
-		if(args.count('c'))
-			c = atoi(args['c'].c_str());
-		if(args.count('d'))
+		printf("options:\n");
+		for(arg_parser::opt_iter it = args.options.begin(); it!=args.options.end(); it++){
+			printf("\t%c\t%s\n", it->first, it->second.c_str());
+		}
+
+		if(args.options.count('c'))
+			c = atoi(args.options['c'].c_str());
+		if(args.options.count('d'))
 			d = true;
+
 	}else{
 		std::string::size_type pos;
 		std::string argv0(argv[0]);
