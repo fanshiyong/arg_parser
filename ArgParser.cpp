@@ -20,7 +20,7 @@ int _tmain(int argc, char* argv[])
 		if(args.count('d'))
 			d = true;
 	}else{
-		arg_parser::size_type pos;
+		std::string::size_type pos;
 		std::string argv0(argv[0]);
 		pos = argv0.rfind('\\');
 		if(pos != std::string::npos){
