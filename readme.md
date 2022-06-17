@@ -14,7 +14,7 @@ Just include arg_parser.h.
 
 int main(int argc, char* argv[])
 {
-	arg_parser cmd("c:d");
+	arg_parser cmd("c:d"); //c is an option followed by a value, d is a switch.
 	if(cmd.parse(argc, argv)){
 		printf("args:\n");
 		//cmd.args is a instance of type std::vector<std::string>.
@@ -34,5 +34,7 @@ int main(int argc, char* argv[])
 	}
 	return 0;
 }
+
+
 ```
 
