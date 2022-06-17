@@ -2,8 +2,8 @@
  * fsy@hbu.edu.cn
  */
 
-#ifndef __ARGS_PARSER_H
-#define __ARGS_PARSER_H
+#ifndef __ARG_PARSER_H
+#define __ARG_PARSER_H
 
 #include <map>
 #include <vector>
@@ -80,4 +80,4 @@ private:
 	std::map<char, bool> opt_types;
 };
 
-#endif //define __ARGS_PARSER_H
+#endif //define __ARG_PARSER_H
