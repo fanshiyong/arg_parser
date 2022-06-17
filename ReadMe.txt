@@ -1,21 +1,28 @@
-﻿arg_parser类由以下两个文件声明：
-arg_parser.h
-arg_parser.cpp
+﻿#include "arg_parser.h"
+#include <stdio.h>
 
-ArgParser.cpp演示了arg_parser类使用方法。
-
+int main(int argc, char* argv[])
+{
 	arg_parser args("c:d");
-	int c=0;
-	bool d=false;
+	int  opt_c = 0;
+	bool opt_d = false;
+
 	if(args.parse(argc, argv)){
-		for(arg_parser::iterator it = args.begin(); it!=args.end(); it++){
-			printf("%c\t%s\n", it->first, it->second.c_str());
+		printf("arguments:\n");
+		for(int i=0; i<args.arguments.size(); i++){
+			printf("\t%s\n", args.arguments[i].c_str());
 		}
 
-		if(args.count('c'))
-			c = atoi(args['c'].c_str());
-		if(args.count('d'))
-			d = true;
+		printf("options:\n");
+		for(arg_parser::opt_iter it = args.options.begin(); it!=args.options.end(); it++){
+			printf("\t%c\t%s\n", it->first, it->second.c_str());
+		}
+
+		if(args.options.count('c'))
+			opt_c = atoi(args.options['c'].c_str());
+		if(args.options.count('d'))
+			opt_d = true;
+
 	}else{
 		std::string::size_type pos;
 		std::string argv0(argv[0]);
@@ -23,5 +30,8 @@ ArgParser.cpp演示了arg_parser类使用方法。
 		if(pos != std::string::npos){
 			argv0 = argv0.substr(pos+1);
 		}
-		printf("usage: %s [-c channel] [-d]\n", argv0.c_str());
+		printf("usage: %s ip [file] [-c channel] [-d]\n", argv0.c_str());
 	}
+	return 0;
+}
+

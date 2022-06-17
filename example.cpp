@@ -1,15 +1,12 @@
-// ArgParser.cpp : 定义控制台应用程序的入口点。
-//
-
-#include "stdafx.h"
-
 #include "arg_parser.h"
+#include <stdio.h>
 
-int _tmain(int argc, char* argv[])
+int main(int argc, char* argv[])
 {
 	arg_parser args("c:d");
-	int c=0;
-	bool d=false;
+	int  opt_c = 0;
+	bool opt_d = false;
+
 	if(args.parse(argc, argv)){
 		printf("arguments:\n");
 		for(int i=0; i<args.arguments.size(); i++){
@@ -22,9 +19,9 @@ int _tmain(int argc, char* argv[])
 		}
 
 		if(args.options.count('c'))
-			c = atoi(args.options['c'].c_str());
+			opt_c = atoi(args.options['c'].c_str());
 		if(args.options.count('d'))
-			d = true;
+			opt_d = true;
 
 	}else{
 		std::string::size_type pos;
@@ -33,7 +30,7 @@ int _tmain(int argc, char* argv[])
 		if(pos != std::string::npos){
 			argv0 = argv0.substr(pos+1);
 		}
-		printf("usage: %s [-c channel] [-d]\n", argv0.c_str());
+		printf("usage: %s ip [file] [-c channel] [-d]\n", argv0.c_str());
 	}
 	return 0;
 }
