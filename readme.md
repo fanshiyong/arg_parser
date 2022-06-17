@@ -25,8 +25,7 @@ int main(int argc, char* argv[])
 		}
 
 		printf("options:\n");
-		for(arg_parser::opt_iter it = args.options.begin(); 
-            it!=args.options.end(); it++){
+		for(arg_parser::opt_iter it = args.options.begin(); it!=args.options.end(); it++){
 			printf("\t%c\t%s\n", it->first, it->second.c_str());
 		}
 
