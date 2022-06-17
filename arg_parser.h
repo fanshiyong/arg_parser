@@ -28,8 +28,8 @@ public:
 		int state = 0; //0 option or argument, 1 option value.
 		std::map<char, bool>::iterator it;
 
-		arguments.clear();
-		options.clear();
+		args.clear();
+		opts.clear();
 
 		for(int i=1; i<argc; i++) {
 			if(state == 0){
@@ -41,7 +41,7 @@ public:
 								arg_name = argv[i][1];
 								state = 1;
 							}else{
-								options[argv[i][1]] = std::string();
+								opts[argv[i][1]] = std::string();
 								state = 0;
 							}
 						}else{
@@ -51,14 +51,14 @@ public:
 						return false; //invalid argument name.
 					}
 				}else{
-					arguments.push_back(std::string(argv[i]));
+					args.push_back(std::string(argv[i]));
 					state = 0;
 				}
 			}else{
 				if(argv[i][0] == '-'){ //value was expected, but not found.
 					return false;
 				}else{
-					options[arg_name] = std::string(argv[i]);
+					opts[arg_name] = std::string(argv[i]);
 					state = 0;
 				}
 			}
@@ -70,8 +70,8 @@ public:
 	}
 
 
-	std::vector<std::string> arguments;
-	std::map<char, std::string> options;
+	std::vector<std::string> args;
+	std::map<char, std::string> opts;
 
 	typedef std::map<char, std::string>::iterator opt_iter;
 	typedef std::vector<std::string>::iterator arg_iter;
