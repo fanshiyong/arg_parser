@@ -1,10 +1,10 @@
 # Copyright
 
- The library file arg_parse.h is licensed under the [Apache 2 License](https://github.com/opencv/opencv/blob/master/LICENSE).
+ The library file arg_parser.h is licensed under the [Apache 2 License](https://github.com/opencv/opencv/blob/master/LICENSE).
 
 # Install
 
-Just include arg_parse.h.
+Just include arg_parser.h.
 
 # Example
 
